@@ -4,7 +4,7 @@
 EMG-Metrics
 
 Created on Thu Jan 21 21:52:04 2016
-@author: Jeff Barrett and Dan Vigianni
+@author: Jeff Barrett and Dan Viggiani
 
 
 This module is designed to operate on electromyography (EMG)
