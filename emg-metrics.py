@@ -44,7 +44,7 @@ OUTPUT: The co-contraction index
 TIME: O(m)
 """
 def CCI(M):
-    return len(M) * np.min(M, axis=0) / np.sum(M, axis=0)
+    return len(M[0]) * np.min(M, axis=1) / np.sum(M, axis=1)
 
 
 
@@ -59,7 +59,7 @@ OUTPUT: returns an nx1 array detailing the time-varying
 TIME: O(n)
 """
 def mean_activity(M):
-    return np.mean(M, axis=0)
+    return np.mean(M, axis=1)
 
 
 
@@ -74,7 +74,7 @@ OUTPUT: Returns the co-contraction index and the mean
 TIME: O(n)
 """
 def compute_path(M):
-    return (CCI(M), mean_activity(M))
+    return CCI(M), mean_activity(M)
 
 
 
@@ -91,24 +91,7 @@ INPUT: M  : nxm array where n is the frame-count, and
 def VigBarCal2016metric(M, phi):
     x,y = compute_path(M)
     dz = np.sqrt(np.gradient(x,edge_order=2)**2 + np.gradient(y, edge_order=2)**2)
-    return np.sum(phi(x,y) * dz)/len(M[0])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return np.sum(phi(x,y) * dz)/len(M)
 
 
 
